@@ -8,8 +8,8 @@ import css from "./SharedLayout.module.css";
 const SharedLayout = () => {
 
   return (
-    <div className={css.container}>
-      <header className={css.header}>
+    <>
+    <header className={css.header}>
         <nav className={css.navPage}>
           <NavLink to="/"   className={css.navLink}>
             <FaFilm className={css.logo} />
@@ -20,9 +20,12 @@ const SharedLayout = () => {
           </NavLink>
         </nav>
       </header>
+      <div className={css.container}>
       <Outlet />
       <ToastContainer autoClose={2000} />
     </div>
+    </>
+      
   );
 }
 

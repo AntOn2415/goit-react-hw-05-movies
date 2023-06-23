@@ -34,7 +34,7 @@ function Searchbar({ onSubmit }) {
   };
 
   return (
-    <section className={css.searchbar}>
+    <div>
       <form onSubmit={handleSubmit} className={css.searchForm}>
         <input
           type="text"
@@ -53,7 +53,7 @@ function Searchbar({ onSubmit }) {
           <label className={css.searchLabel}>Search</label>
         </button>
       </form>
-    </section>
+    </div>
   );
 }
 

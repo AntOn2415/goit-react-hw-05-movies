@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchTrendingMovies } from '../../service/MoviesService';
+import MovieListItem from "components/MoviesListItem/MoviesListItem";
 
 function TrendingMoviesList() {
   const [movies, setMovies] = useState([]);
@@ -26,10 +27,6 @@ function TrendingMoviesList() {
       </ul>
     </div>
   );
-}
-
-function MovieListItem({ movie }) {
-  return <li>{movie.title}</li>;
 }
 
 export default TrendingMoviesList;

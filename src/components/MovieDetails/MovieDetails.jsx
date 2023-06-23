@@ -9,8 +9,7 @@ import css from "./MovieDetails.module.css"
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
-  console.log('movieId:',movieId);
-  console.log("useParams:", useParams());
+  
   useEffect(() => {
     const getMovieDetails = async () => {
       try {
@@ -37,7 +36,7 @@ const MovieDetails = () => {
     genres,
   } = movieDetails;
 
-  const imageUrl = getImageUrl(poster_path);
+  const imageUrl = poster_path ? getImageUrl(poster_path) : null;
 
   return (
     <section className={css.movieDetails}>
@@ -47,7 +46,11 @@ const MovieDetails = () => {
         </Link>
       <section className={css.basicInfo}>
       <div className={css.imageContainer}>
-        <img src={imageUrl} alt={title} className={css.image} />
+        {imageUrl ? (
+          <img src={imageUrl} alt={title} className={css.image} />
+        ) : (
+          <div className={css.placeholder}>No Image</div>
+        )}
       </div>
       <div className={css.detailsContainer}>
         <h2 className={css.title}>{title} ({release_date.slice(0, 4)})</h2>
