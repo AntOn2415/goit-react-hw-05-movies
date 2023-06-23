@@ -1,0 +1,10 @@
+.movieListItem {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.movieListItem:hover,
+.movieListItem:focus {
+  color: #007bff;
+}
