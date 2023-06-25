@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { fetchMovieCredits, getImageUrl } from "../../service/MoviesService";
+import { LoaderThreeDots } from "components/Loader/Loader";
 import css from "./Cast.module.css"
 
-const Cast = ({ movieId }) => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
+  const { movieId } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getMovieCredits = async () => {
       try {
+        setIsLoading(true);
         const credits = await fetchMovieCredits(movieId);
         setCast(credits.cast);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
     getMovieCredits();
   }, [movieId]);
+
+  if (isLoading) {
+    return <LoaderThreeDots />;
+  }
 
   return (
     <section className={css.castInfo}>

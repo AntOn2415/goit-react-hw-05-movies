@@ -6,10 +6,6 @@ import Reviews from "./Reviews";
 import HomePage from "pages/HomePage";
 import MoviesPage from "pages/MoviesPage";
 
-
-
-
-
 export const App = () => {
   return (
       <Routes>

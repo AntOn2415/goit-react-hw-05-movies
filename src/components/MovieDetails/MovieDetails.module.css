@@ -62,6 +62,8 @@
 
 .overview {
   margin-bottom: 10px;
+  max-height: 290px;
+  overflow-y: auto;
   font-size: 18px;
   color: #555;
 }

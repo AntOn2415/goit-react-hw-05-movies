@@ -1,14 +1,14 @@
 import MovieListItem from "../MoviesListItem";
 import css from "./MoviesList.module.css";
 
-const MovieList = ({ movies }) => {
+const MoviesList = ({ movies }) => {
   return (
-    <div className={css.movieList}>
+    <ul className={css.movieList}>
       {movies.map((movie) => (
         <MovieListItem key={movie.id} movie={movie} />
       ))}
-    </div>
+    </ul>
   );
 };
 
-export default MovieList;
+export default MoviesList;
