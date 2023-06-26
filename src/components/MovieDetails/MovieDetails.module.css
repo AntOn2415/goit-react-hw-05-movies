@@ -4,14 +4,15 @@
   background-color: #f2f2f2;
 }
 
-.goBack{
+.goBack {
   padding: 6px;
   text-decoration: none;
   color: #555;
   transition: color 300ms ease-in-out;
 }
 
-.goBack:hover, .goBack:focus {
+.goBack:hover,
+.goBack:focus {
   color: #007bff;
 }
 
@@ -96,7 +97,24 @@
   transition: color 300ms ease-in-out;
 }
 
-.link:hover, .link:focus {
+.link:hover,
+.link:focus {
   color: #007bff;
 }
 
+@media (max-width: 600px) {
+  .basicInfo {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .imageContainer {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .image {
+    width: 250px;
+    height: auto;
+  }
+}

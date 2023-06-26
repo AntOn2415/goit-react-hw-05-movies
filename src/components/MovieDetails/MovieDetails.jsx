@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { fetchMovieDetails, getImageUrl } from '../../service/MoviesService';
@@ -11,7 +11,7 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const location = useLocation();
-  
+
   const backLinkLocation = useRef(location.state?.from ?? '/');
   const previousPath = backLinkLocation.current;
 
@@ -56,13 +56,13 @@ const MovieDetails = () => {
     movieDetails;
 
   const imageUrl = poster_path ? getImageUrl(poster_path) : null;
-  
+
   return (
     <section className={css.movieDetails}>
       <Link to={previousPath} className={css.goBack}>
-  <FiArrowLeft className={css.icon} />
-  Go back
-</Link>
+        <FiArrowLeft className={css.icon} />
+        Go back
+      </Link>
       <section className={css.basicInfo}>
         <div className={css.imageContainer}>
           {imageUrl ? (
@@ -93,10 +93,11 @@ const MovieDetails = () => {
           Reviews
         </Link>
       </section>
-      <Outlet />
+      <Suspense>
+        <Outlet />
+      </Suspense>
     </section>
   );
 };
 
 export default MovieDetails;
-

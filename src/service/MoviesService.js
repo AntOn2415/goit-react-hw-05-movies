@@ -5,8 +5,7 @@ async function fetchTrendingMovies() {
     const response = await axiosInstance.get('trending/all/day?language=en-US');
     return response.data.results;
   } catch (error) {
-    console.error(error);
-    throw new Error('Failed to fetch trending movies');
+    throw error;
   }
 }
 
@@ -17,8 +16,7 @@ async function searchMovies(query) {
     );
     return response.data.results;
   } catch (error) {
-    console.error(error);
-    throw new Error('Failed to search movies');
+    throw error;
   }
 }
 
@@ -27,7 +25,7 @@ async function fetchMovieDetails(movieId) {
     const response = await axiosInstance.get(`movie/${movieId}?language=en-US`);
     return response.data;
   } catch (error) {
-    console.error(error);
+    
     throw new Error(`Failed to fetch details for movie with ID: ${movieId}`);
   }
 }
@@ -39,8 +37,7 @@ async function fetchMovieCredits(movieId) {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
-    throw new Error(`Failed to fetch credits for movie with ID: ${movieId}`);
+    throw error;
   }
 }
 
@@ -51,8 +48,7 @@ async function fetchMovieReviews(movieId) {
     );
     return response.data;
   } catch (error) {
-    console.error(error);
-    throw new Error(`Failed to fetch reviews for movie with ID: ${movieId}`);
+    throw error;
   }
 }
 

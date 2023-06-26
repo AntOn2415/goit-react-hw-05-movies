@@ -11,26 +11,20 @@
 
 .actorsList {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: 1fr;
   grid-gap: 1rem;
   padding: 0;
-}
 
-@media (max-width: 1200px) {
-  .actorsList {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 800px) {
-  .actorsList {
+  @media (min-width: 600px) {
     grid-template-columns: repeat(2, 1fr);
   }
-}
 
-@media (max-width: 600px) {
-  .actorsList {
-    grid-template-columns: 1fr;
+  @media (min-width: 800px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
@@ -40,7 +34,7 @@
   align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  padding: 10px;
+  padding: 20px 10px;
 }
 
 .actorPhoto {

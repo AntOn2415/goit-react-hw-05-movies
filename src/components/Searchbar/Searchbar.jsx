@@ -47,7 +47,7 @@ function Searchbar({ onSubmit }) {
           className={css.searchInput}
         />
         <button type="submit" className={css.searchButton}>
-          <IconContext.Provider value={{ color: "#007bff", size: 20 }}>
+          <IconContext.Provider value={{ color: '#007bff', size: 20 }}>
             <FaSearch className={css.searchIcon} />
           </IconContext.Provider>
           <label className={css.searchLabel}>Search</label>

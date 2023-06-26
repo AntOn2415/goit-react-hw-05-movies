@@ -8,7 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');
-  const [movies, setMovies] = useState(() => JSON.parse(localStorage.getItem('searchedMovies')) || []);
+  const [movies, setMovies] = useState(
+    () => JSON.parse(localStorage.getItem('searchedMovies')) || []
+  );
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const MoviesPage = () => {
           toast.info('No movies found.');
         }
       } catch (error) {
-        console.error(error);
+        throw new Error('Failed to search movies');
       } finally {
         setIsLoading(false);
       }
@@ -44,10 +46,10 @@ const MoviesPage = () => {
   };
 
   return (
-    <main>
+    <div>
       <Searchbar onSubmit={handleFormSubmit} />
       {isLoading ? <Loader /> : <MoviesList movies={movies} />}
-    </main>
+    </div>
   );
 };
 

@@ -13,7 +13,7 @@ const HomePage = () => {
         const trendingMovies = await fetchTrendingMovies();
         setMovies(trendingMovies);
       } catch (error) {
-        console.error(error);
+        throw new Error('Failed to fetch trending movies');
       } finally {
         setIsLoading(false);
       }
@@ -27,10 +27,10 @@ const HomePage = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        <main>
+        <div>
           <h1 className="title">Trending today</h1>
           <MoviesList movies={movies} />
-        </main>
+        </div>
       )}
     </>
   );
