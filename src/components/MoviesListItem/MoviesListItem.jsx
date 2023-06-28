@@ -6,12 +6,11 @@ const MovieListItem = ({ movie }) => {
   const location = useLocation();
   const moviePath =
     location.pathname === '/' ? `/movies/${movie.id}` : `${movie.id}`;
-
   return (
     <li>
       <Link
         to={moviePath}
-        state={{ from: location.pathname }}
+        state={{ from: location }}
         className={css.movieLink}
       >
         {movie.title || movie.name}

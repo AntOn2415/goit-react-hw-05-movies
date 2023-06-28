@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieReviews } from '../../service/MoviesService';
+import { fetchMovieAddInfo } from '../../service/MoviesService';
 import { LoaderThreeDots } from 'components/Loader/Loader';
 import css from './Reviews.module.css';
 
@@ -12,7 +12,7 @@ const Reviews = () => {
   useEffect(() => {
     const getMovieReviews = async () => {
       try {
-        const response = await fetchMovieReviews(movieId);
+        const response = await fetchMovieAddInfo(movieId, "reviews");
         setReviews(response.results);
       } catch (error) {
         throw error;

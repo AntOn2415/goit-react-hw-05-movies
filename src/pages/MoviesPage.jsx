@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { searchMovies } from '../service/MoviesService';
 import Searchbar from '../components/Searchbar';
@@ -8,21 +9,23 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const MoviesPage = () => {
   const [query, setQuery] = useState('');
-  const [movies, setMovies] = useState(
-    () => JSON.parse(localStorage.getItem('searchedMovies')) || []
-  );
+  const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    localStorage.setItem('searchedMovies', JSON.stringify(movies));
-  }, [movies]);
-
-  useEffect(() => {
-    if (query === '') {
-      return;
+    const savedQuery = searchParams.get('query');
+    if (savedQuery) {
+      setQuery(savedQuery);
     }
+  }, [searchParams]);
 
+  useEffect(() => {
     async function fetchMovies() {
+      if (query === '') {
+        return;
+      }
+
       try {
         setIsLoading(true);
         const searchedMovies = await searchMovies(query);
@@ -42,6 +45,7 @@ const MoviesPage = () => {
   }, [query]);
 
   const handleFormSubmit = query => {
+    setSearchParams({ query });
     setQuery(query);
   };
 

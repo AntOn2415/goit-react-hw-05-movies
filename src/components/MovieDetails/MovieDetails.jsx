@@ -1,60 +1,15 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+
+import React from 'react';
+import { Link, Outlet } from 'react-router-dom';
+import { getImageUrl } from '../../service/MoviesService';
 import { FiArrowLeft } from 'react-icons/fi';
-import { fetchMovieDetails, getImageUrl } from '../../service/MoviesService';
-import { Loader } from '../Loader/Loader';
 import css from './MovieDetails.module.css';
 
-const MovieDetails = () => {
-  const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const location = useLocation();
-
-  const backLinkLocation = useRef(location.state?.from ?? '/');
-  const previousPath = backLinkLocation.current;
-
-  useEffect(() => {
-    const getMovieDetails = async () => {
-      try {
-        setIsLoading(true);
-        const details = await fetchMovieDetails(movieId);
-        setMovieDetails(details);
-      } catch (error) {
-        console.error(error);
-        setError('The resource you requested could not be found.');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getMovieDetails();
-  }, [movieId]);
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return (
-      <section className={css.movieDetails}>
-        <p>{error}</p>
-        <Link to={previousPath} className={css.goBack}>
-          <FiArrowLeft className={css.icon} />
-          Go back
-        </Link>
-      </section>
-    );
-  }
-
-  if (!movieDetails) {
-    return null;
-  }
-
+const MovieDetails = ({ movieDetails, previousPath }) => {
+  
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movieDetails;
-
+  
   const imageUrl = poster_path ? getImageUrl(poster_path) : null;
 
   return (
@@ -93,9 +48,7 @@ const MovieDetails = () => {
           Reviews
         </Link>
       </section>
-      <Suspense>
         <Outlet />
-      </Suspense>
     </section>
   );
 };

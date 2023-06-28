@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieCredits, getImageUrl } from '../../service/MoviesService';
+import { fetchMovieAddInfo, getImageUrl } from '../../service/MoviesService';
 import { LoaderThreeDots } from 'components/Loader/Loader';
 import css from './Cast.module.css';
 
@@ -13,7 +13,7 @@ const Cast = () => {
     const getMovieCredits = async () => {
       try {
         setIsLoading(true);
-        const credits = await fetchMovieCredits(movieId);
+        const credits = await fetchMovieAddInfo(movieId, "credits");
         setCast(credits.cast);
       } catch (error) {
         throw error;
