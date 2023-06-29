@@ -1,42 +1,25 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { FaFilm } from 'react-icons/fa';
 import { Loader } from '../Loader/Loader';
-// import './index.css';
 import css from './SharedLayout.module.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 const SharedLayout = () => {
-  const location = useLocation();
-  
-  const isCurrentPage = path => {
-    return location.pathname === path ? css.current : '';
-  };
 
   return (
     <>
       <header className={css.header}>
         <nav className={css.navPage}>
-          {/* <NavLink to="/" className={css.navLink}>
+          <NavLink to="/" className={({isActive}) => `${css.navLink} ${isActive ? css.active : ''}`} >
             <FaFilm className={css.logo} />
             Home
           </NavLink>
           <NavLink
             to="/movies"
-            // className={css.navLink}
-            className="navLink"
-          >
-            Movies
-          </NavLink> */}
-          <NavLink to="/" className={`${css.navLink} ${isCurrentPage('/')}`}>
-            <FaFilm className={css.logo} />
-            Home
-          </NavLink>
-          <NavLink
-            to="/movies"
-            className={`${css.navLink} ${isCurrentPage('/movies')}`}
+            className={({isActive}) => `${css.navLink} ${isActive ? css.active : ''}`}
           >
             Movies
           </NavLink>

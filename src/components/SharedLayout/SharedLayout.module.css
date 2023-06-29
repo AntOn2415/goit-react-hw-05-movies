@@ -35,15 +35,11 @@
   color: #007bff;
 }
 
-/* .navLink.active {
+.navLink.active {
   color: #007bff;
-} */
+}
 
 .logo {
   margin-right: 10px;
   font-size: 20px;
-}
-
-.navLink.current {
-  color: #007bff;
 }
